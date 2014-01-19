@@ -9,4 +9,22 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-Groupme::Application.config.secret_key_base = '40701a049e1c154a289f564a3982500e8ece5c6af48d52c1837b51b2170f96553fce7fc406212d09cacaf675825acb82f187a4d93675887dbe03a7df66f08af9'
+
+require 'securerandom'
+
+def secure_token 
+     token_file = Rails.root.join('.secret') 
+     if File.exist?(token_file)   
+          # Use the existing token.   
+          File.read(token_file).chomp 
+
+     else   
+
+          # Generate a new token and store it in token_file.   
+          token =SecureRandom.hex(64)   
+          File.write(token_file, token)   
+          token 
+     end
+end
+
+Groupme::Application.config.secret_key_base = secure_token 

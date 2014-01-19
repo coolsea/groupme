@@ -17,6 +17,7 @@
 *.DS_Store
 *.swp
 .env
+.secret
 public/uploads
 vendor/bundler_gems
 config/database.yml

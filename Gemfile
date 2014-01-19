@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 
+ruby '2.0.0'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
 
-# Use mysql as the database for Active Record
-gem 'mysql2'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
@@ -53,6 +53,12 @@ gem "dalli"
 
 gem "compass-rails", "~> 2.0.alpha.0"
 
+group :production do
+  gem 'pg', '0.15.1'
+  gem 'rails_12factor'
+end
+
+
 group :development do
   gem "capistrano"
   gem "capistrano-ext"
@@ -64,9 +70,14 @@ group :development do
   gem "powder"
   gem "pry-nav"
   gem "pry-remote"
+  gem 'mysql2'
+  gem 'rspec-rails','2.13.1'
 end
 
-
+group :test do
+  gem 'selenium-webdriver','2.35.1'
+  gem 'capybara','2.1.0'
+end
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
