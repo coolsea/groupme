@@ -51,7 +51,7 @@ gem "hipchat"
 # Cache
 gem "dalli"
 
-gem "compass-rails", "~> 2.0.alpha.0"
+gem "compass-rails", "~> 1.1.2"
 
 group :production do
   gem 'pg', '0.15.1'
