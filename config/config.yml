@@ -1,12 +1,12 @@
 defaults: &defaults
-  app_name: "groupme"
+  app_name: "Coolsea App"
   domain: "http://groupme.dev"    
   facebook_app_id: 
   facebook_secret: 
   hipchat_token: 
   hipchat_room_name: 
   admin_emails: 
-    - ""
+    - "wei_918@coolsea.net"
   google_analytics_key: ""
   default_logo_url: "/logo.png"
   email_sender: ""
