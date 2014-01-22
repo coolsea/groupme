@@ -1,12 +1,16 @@
 class GroupsController < ApplicationController
 
+	#限定某些特定頁面允許被瀏覽
+	before_action :login_required, :only => [:new, :create, :edit, :update, :destroy]
+
+
 	def index
 		@groups = Group.all
 	end
 
 	def show
-		@group = Group.find(params[:id])
-		@posts = @group.posts
+	    @group = Group.find(params[:id])
+	    @posts = @group.posts
 	end
 
 	def new
@@ -14,18 +18,21 @@ class GroupsController < ApplicationController
 	end
 
 	def create
-		@group = Group.new(group_params)
-		@group.save
+		@group = current_user.groups.build(group_params)
 
-		redirect_to groups_path
+		if @group.save
+			redirect_to groups_path
+		else
+			render :new
+		end
 	end
 
 	def edit
-		@group = Group.find(params[:id])
+		@group = current_user.groups.find(params[:id])
 	end
 
 	def update
-		@group = Group.find(params[:id])
+		@group = current_user.groups.find(params[:id])
 
 		if @group.update(group_params)
 			redirect_to group_path(@group)
@@ -35,7 +42,7 @@ class GroupsController < ApplicationController
 	end
 
 	def destroy
-		@group = Group.find(params[:id])
+		@group = current_user.groups.find(params[:id])
 
 		@group.destroy
 

@@ -1,8 +1,10 @@
 <div class="span12">
 
 	<div class="group pull-right">
+		<% if current_user && @group.editable_by?(current_user) %>
 		<%= link_to("Edit",edit_group_path(@group), :class => "btn btn-mini btn-primary pull-right") %>
-		<%= link_to("New Post",new_group_post_path(@group), :class => "btn btn-mini btn-primary pull-right") %>
+		<% end %>
+		<%= link_to("New Post",new_group_post_path(@group), :class => "btn btn-mini btn-primary") %>
 	</div>
 
 	<h2> <%= @group.title %> </h2>
@@ -13,12 +15,20 @@
 		<tbody>
 			<% @posts.each do |post| %>
 			<tr>
-				<td> <%= post.content %> </td>
+				<td> 
+					<span class="author"> <strong> Author：<%= post.author.name %> </strong> </span>
+					<p>
+					<%= post.content %> 
+					</p>
+				</td>
+
+				<% if current_user && post.editable_by?(current_user) %>
 				<td> <%= link_to("Edit", edit_group_post_path(post.group, post), :class => "btn btn-mini") %>
-				<td> <%= link_to("Delete", group_post_path(post.group, post), :class => "btn btn-mini", :method => :delete, :confirm => "Are you sure?") %>
+					 <%= link_to("Delete", group_post_path(post.group, post), :class => "btn btn-mini", :method => :delete, :confirm => "Are you sure?") %>
 				</td>
 			</tr>
 
+			<% end %>
 			<% end %>
 		</tbody>
 	</table>
