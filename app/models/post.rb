@@ -8,4 +8,5 @@ class Post < ActiveRecord::Base
 		user && user == author
 	end
 
+
 end
