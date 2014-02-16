@@ -1,6 +1,6 @@
 defaults: &defaults
   app_name: "Coolsea App"
-  domain: "http://groupme.dev"    
+  domain: "http://rails101-groupme.dev/"    
   facebook_app_id: 
   facebook_secret: 
   hipchat_token: 
